@@ -19,7 +19,7 @@ class BookingSpa(models.Model):
         ]
 
     
-    client = models.ForeignKey(ProfileClient, on_delete=models.PROTECT)
+    client = models.ForeignKey(ProfileClient, on_delete=models.SET_NULL, null=True)
     profile = models.ForeignKey(ProfileUser, on_delete=models.PROTECT, blank=True, null=True)
     room = models.ForeignKey(RoomSpa, on_delete=models.PROTECT, blank=True, null=True)
     discount = models.IntegerField(default=0)
