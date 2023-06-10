@@ -21,7 +21,10 @@ Payment ethod Booking {{booking.id}}
                             <input type="hidden" name="assistant" value="{{ request.user.get_full_name }}" />
                             <input type="hidden" name="created" value="{{datetime_sale}}" />
                             
-                                <div class="flex flex-wrap justify-center">                                
+                                <div class="flex flex-wrap justify-center">   
+                                    {% if form.errors %}
+                                            <span class='text-red-600 text-xs font-medium '>{{form.errors}}</span>
+                                    {% endif %}                             
                            
                                     <div class="w-52 p-2">
                                         <label class="block text-sm font-medium text-gray-900 dark:text-white">Booking N°</label>
@@ -65,7 +68,7 @@ Payment ethod Booking {{booking.id}}
                                     </button>                               
                                 </div>
                                 <div class="p-1">
-                                    <a href="{% url 'booking:list_booking_wait_gestion' %}" 
+                                    <a href="{% url 'booking:list_booking_gestion' %}" 
                                         class="flex w-full justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                         Cancel
                                     </a>
