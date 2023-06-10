@@ -6,10 +6,8 @@ import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -38,13 +36,13 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'compressor',
-    #"crispy_forms",
+    #crispy_forms
     #"crispy_tailwind",
 
     # Django_phonenumber_field
     "phonenumber_field",
 
-    # Apps
+    # Apps_local
     'profile_user',
     'client',
     'inventory',
@@ -73,6 +71,7 @@ NPM_BIN_PATH = '/usr/local/bin/npm'
 #NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,9 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'project_admin.middleware.ProfileLoginMiddleware',
-
-    
+    'project_admin.middleware.ProfileLoginMiddleware',   
 
 ]
 
@@ -109,11 +106,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project_admin.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
+"""
 DATABASES = {
     'default': dj_database_url.config(
         default=env('DATABASE_URL')
@@ -126,20 +122,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
-}
-"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -163,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Bogota'
 

@@ -29,4 +29,10 @@ urlpatterns = [
         view=views.ListHistoryClient.as_view(),
         name='update_client_history'
     ),
+    path(
+        route='delete/client/<int:id>/',
+        view=views.DeleteProfileClient.as_view(),
+        name='delete_client'
+    ),
+    
 ]

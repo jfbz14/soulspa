@@ -1,5 +1,5 @@
 # Django
-from django.views.generic import FormView, UpdateView, ListView
+from django.views.generic import FormView, UpdateView, ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.db.models import Q
@@ -105,6 +105,22 @@ class ListHistoryClient(LoginRequiredMixin, UpdateView):
         'implants',
         'others',
         ]
+    success_url = reverse_lazy('profileclient:list_client')
+
+    def dispatch(self, request, *args, **kwargs):
+        # validates if you have permission for the view            
+        profile = self.request.user.profileuser
+        if profile.position == 'masseur':
+            return redirect('booking:list_booking_wait_gestion')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class DeleteProfileClient(LoginRequiredMixin, DeleteView):
+    """ User detail view. """
+
+    template_name = 'profile_client/delete_client.html'
+    pk_url_kwarg = 'id'
+    model = ProfileClient
     success_url = reverse_lazy('profileclient:list_client')
 
     def dispatch(self, request, *args, **kwargs):

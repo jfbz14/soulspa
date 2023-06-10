@@ -12,7 +12,7 @@ class ProfileLoginMiddleware:
     Make sure that all users who interact with the platform
     are registered.
     """
-
+    
     def __init__(self, get_response):
         """Middleware initialization."""
         self.get_response = get_response

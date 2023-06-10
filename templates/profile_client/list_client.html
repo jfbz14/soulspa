@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content_title %}
-List profile
+List Clients
 {% endblock content_title %}
 
 {% block content_extra_nav %}
+
 <div class="px-1.5">
     <button data-popover-target="popover-default-client" id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
         <a href="{% url 'profileclient:signup_client' %}" class="flex justify-between ">
-            <svg 
-                class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" 
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" 
-                    clip-rule="evenodd">
-                    
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd">                    
                 </path>
             </svg>
             <span class="text-base text-gray-500 hover:text-gray-500 font-bold px-2 dark:text-white dark:hover:text-white">
@@ -26,9 +23,11 @@ List profile
         <div data-popper-arrow></div>
     </div>
 </div>
+
 {% endblock content_extra_nav %}
 
 {% block content %}
+
 <div class="w-full max-w-lg justify-center mx-auto" >
     <form method="GET">   
     {% csrf_token %}  
@@ -42,7 +41,6 @@ List profile
         </div>
     </form>
 </div>
-
 
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-200">
@@ -72,48 +70,59 @@ List profile
                 <th scope="col" class="p-2">
                     Edit
                 </th>
+                <th scope="col" class="p-2">
+                    Delete
+                </th>
             </tr>
         </thead>
         <tbody>
             {%for profile in profileclient %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{profile}}
-                </th>
-                <td class="p-2">
-                    {{profile.document_type}} : {{profile.document_number}}
-                </td>
-                <td class="p-2">
-                    {{profile.email}}
-                </td>
-                <td class="p-2">
-                    {{profile.phone_number.as_national}}
-                </td>
-                <td class="p-2">
-                    {{profile.sex}}
-                </td>
-                <td class="p-2">
-                    {{profile.permission|title}}
-                </td>
-                <td class="p-2">
-                    <a href="{% url 'profileclient:update_client_history' profile.medicalhistory.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
-                        </path>
-                        </svg>
-                    </a>
-                </td>
-                <td class="p-2">
-                    <a href="{% url 'profileclient:update_client' profile.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        <svg 
-                        class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
-                        </path>
-                        </svg>
-                    </a>
-                </td>
-                
-            </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{profile}}
+                    </th>
+                    <td class="p-2">
+                        {{profile.document_type}} : {{profile.document_number}}
+                    </td>
+                    <td class="p-2">
+                        {{profile.email}}
+                    </td>
+                    <td class="p-2">
+                        {{profile.phone_number.as_national}}
+                    </td>
+                    <td class="p-2">
+                        {{profile.sex}}
+                    </td>
+                    <td class="p-2">
+                        {{profile.permission|title}}
+                    </td>
+                    <td class="p-2">
+                        <a href="{% url 'profileclient:update_client_history' profile.medicalhistory.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                            </path>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="p-2">
+                        <a href="{% url 'profileclient:update_client' profile.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <svg 
+                            class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                            </path>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="p-2">
+                        <a href="{% url 'profileclient:delete_client' profile.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                                </path>
+                            </svg>
+                        </a>
+                    </td>
+                    
+                </tr>
             {% endfor %}
         </tbody>
     </table>
